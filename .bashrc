@@ -17,8 +17,15 @@ mkcd () {
   cd "$*"
 }
 
+#rm -rf
+rmrf () {
+  rm -rf "$*"
+}
+
+
 alias la="ls -a"
 alias c="clear"
+alias game="cd ~/challenge/hep_C_cure/"
 alias lsa="ls -la"
 alias vimrc="vim ~/.vimrc"
 alias bashrc="vim ~/.bashrc"

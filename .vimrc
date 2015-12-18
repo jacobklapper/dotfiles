@@ -10,6 +10,13 @@ nore , ;
 
 set autoread                    "Reload files changed outside vim
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
 
 set showmatch
 set incsearch
@@ -22,8 +29,8 @@ set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set showcmd
 
-"set background=dark
-colorscheme ChocolateLiquor
+set background=dark
+"colorscheme ChocolateLiqour
 
 " ================ Indentation ======================
 "
@@ -45,7 +52,20 @@ set linebreak    "Wrap lines at convenient points
 "noremap <Up>   <C-O>gk
 "inoremap <Down> <C-O>gj
 
+nnoremap <BS> X
 inoremap jk <esc>
 
 cmap w!! w !sudo tee % >/dev/null
-                      
+
+if &term =~ "xterm"
+  let &t_Co = 256
+  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l\<Esc>8"
+  if has("terminfo")
+    let &t_Sf = "\<Esc>[3%p1%dm"
+    let &t_Sb = "\<Esc>[4%p1%dm"
+  else
+    let &t_Sf = "\<Esc>[3%dm"
+    let &t_Sb = "\<Esc>[4%dm"
+  endif
+endif
